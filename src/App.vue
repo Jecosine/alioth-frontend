@@ -1,11 +1,27 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div id="app-content" ref="appContent">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view />
+  </div>
 </template>
+<script lang="ts" setup>
+import { ref } from "vue";
+import bus from "vue3-eventbus";
+const currentTheme = ref("light");
+const appContent = ref(null);
 
+function themeChange() {
+  console.log("fucking theme changed");
+  currentTheme.value = currentTheme.value === "light" ? "dark" : "light";
+  document.documentElement.className = currentTheme.value;
+  appContent.value.className = currentTheme.value;
+  console.log(appContent.value);
+}
+bus.on("themeChange", themeChange);
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -26,5 +42,17 @@ nav {
       color: #42b983;
     }
   }
+}
+#app {
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: var(--surface-ground);
+  font-family: var(--font-family);
+  font-weight: 400;
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>
