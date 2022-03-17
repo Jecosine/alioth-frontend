@@ -1,5 +1,5 @@
 <template>
-  <div id="app-content" ref="appContent">
+  <div id="app-content" ref="appContent" class="w-screen h-screen p-3">
     <router-view />
   </div>
 </template>
@@ -10,11 +10,11 @@ const currentTheme = ref("light");
 const appContent = ref(null);
 
 function themeChange() {
-  console.log("fucking theme changed");
+  // console.log("fucking theme changed");
   currentTheme.value = currentTheme.value === "light" ? "dark" : "light";
   document.documentElement.className = currentTheme.value;
-  appContent.value.className = currentTheme.value;
-  console.log(appContent.value);
+  // appContent.value.className = currentTheme.value;
+  // console.log(appContent.value);
 }
 bus.on("themeChange", themeChange);
 </script>

@@ -4,12 +4,13 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+
+import eventBus from "vue3-eventbus";
+
 // import "@/style/tailwind.css";
 import "primeflex/primeflex.css";
-import "@/style/index.scss";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
-import eventBus from "vue3-eventbus";
 
 import PrimeVue from "primevue/config";
 import AutoComplete from "primevue/autocomplete";
@@ -204,6 +205,8 @@ app.component("TreeSelect", TreeSelect);
 app.component("TreeTable", TreeTable);
 app.component("TriStateCheckbox", TriStateCheckbox);
 app.component("VirtualScroller", VirtualScroller);
+
+import "@/style/index.scss";
 
 app.use(eventBus);
 app.mount("#app");

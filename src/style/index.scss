@@ -1,7 +1,61 @@
+@import "./reset";
 @import "primevue/resources/themes/lara-light-blue/theme";
+.p-menubar {
+  padding: 0.25rem;
+}
 .dark {
   @import "primevue/resources/themes/lara-dark-blue/theme";
+  .p-menubar {
+    padding: 0.25rem;
+  }
 }
+:root,
+:root.light {
+  --surface-a:#ffffff;
+  --surface-b:#faf9f8;
+  --surface-c:#f3f2f1;
+  --surface-d:#edebe9;
+  --surface-e:#ffffff;
+  --surface-f:#ffffff;
+  --text-color:#323130;
+  --text-color-secondary:#605e5c;
+  --primary-color:#E99D9D;
+  --primary-color-text:#ffffff;
+  --font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --surface-0: #ffffff;
+  --surface-50: #f3f2f1;
+  --surface-100: #e1dfdd;
+  --surface-200: #bebbb8;
+  --surface-300: #a19f9d;
+  --surface-400: #797775;
+  --surface-500: #484644;
+  --surface-600: #323130;
+  --surface-700: #252423;
+  --surface-800: #1b1a19;
+  --surface-900: #11100f;
+  --gray-50: #f3f2f1;
+  --gray-100: #e1dfdd;
+  --gray-200: #bebbb8;
+  --gray-300: #a19f9d;
+  --gray-400: #797775;
+  --gray-500: #484644;
+  --gray-600: #323130;
+  --gray-700: #252423;
+  --gray-800: #1b1a19;
+  --gray-900: #11100f;
+  --content-padding:1rem;
+  --inline-spacing:0.5rem;
+  --border-radius:2px;
+  --surface-ground:#faf9f8;
+  --surface-section:#ffffff;
+  --surface-card:#ffffff;
+  --surface-overlay:#ffffff;
+  --surface-border:#edebe9;
+  --surface-hover:#f3f2f1;
+  --focus-ring: inset 0 0 0 1px #605e5c;
+  --maskbg: rgba(0, 0, 0, 0.4);
+}
+
 :root.dark {
   --surface-a:#071426;
   --surface-b:#040d19;
@@ -11,7 +65,7 @@
   --surface-f:#071426;
   --text-color:rgba(255, 255, 255, 0.87);
   --text-color-secondary:rgba(255, 255, 255, 0.6);
-  --primary-color:#93C5FD;
+  --primary-color:#E99D9D;
   --primary-color-text:#1c2127;
   --font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --surface-0: #040d19;
@@ -46,4 +100,14 @@
   --surface-hover:rgba(255,255,255,.03);
   --focus-ring: 0 0 0 0.2rem rgba(147, 197, 253, 0.5);
   --maskbg: rgba(0, 0, 0, 0.4);
+}
+.line-height-3rem {
+  line-height: 3rem;
+}
+.vertical-align-middle {
+  vertical-align: middle!important;
+}
+main .p-panel .p-panel-header {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
