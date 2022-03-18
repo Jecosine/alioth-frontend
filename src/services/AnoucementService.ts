@@ -7,6 +7,26 @@ export class AnnouncementService implements IBaseService<Announcement> {
   requestUrl = "/login";
   requestData = null;
   axiosClient = axiosClient;
+  // common service for all users
+  fetchAnnouncement() {
+    return;
+  }
+  updateAnnouncementStatus() {
+    return;
+  }
+  readAnnouncement() {
+    return;
+  }
+  // for admin
+  addAnnouncement() {
+    return;
+  }
+  updateAnnouncement() {
+    return;
+  }
+  deleteAnnoucement() {
+    return;
+  }
 }
 
 export const announcementService = new AnnouncementService();

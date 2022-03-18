@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { IBaseService } from "./BaseService";
 export class StatisticService implements IBaseService<unknown> {
   loading = ref<boolean>(true);
-  requestUrl = "/login";
+  requestUrl = "/stat";
   requestData = null;
   axiosClient = axiosClient;
   // base function
