@@ -23,7 +23,7 @@ bus.on("themeChange", themeChange);
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  // text-align: center;
   color: #2c3e50;
 }
 
@@ -50,5 +50,9 @@ nav {
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background: -webkit-linear-gradient(top, transparent 23px, #eee 0),
+    -webkit-linear-gradient(left, transparent 23px, #eee 0);
+  background-size: 24px 24px;
 }
 </style>
