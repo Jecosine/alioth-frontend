@@ -1,6 +1,9 @@
 <template>
   <Card>
-    <template #title> Activity </template>
+    <template #title>
+      <i class="pi pi-chart-line"></i>
+      <span>Activity</span>
+    </template>
     <template #content>
       <div class="w-full sm:hidden lg:block">
         <svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">

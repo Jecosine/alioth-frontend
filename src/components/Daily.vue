@@ -1,6 +1,9 @@
 <template>
   <Card>
-    <template #title> Daily </template>
+    <template #title>
+      <i class="pi pi-calendar"></i>
+      <span>Daily</span>
+    </template>
     <template #content>
       <div class="content-block">
         <ul class="m-0 p-0">
