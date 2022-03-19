@@ -1,14 +1,19 @@
 @import "./reset";
 @import "primevue/resources/themes/lara-light-blue/theme";
 .p-menubar {
-  padding: 0.25rem;
+  // padding: 0.5rem;
+  height: 4rem;
+  border: none;
 }
 .dark {
   @import "primevue/resources/themes/lara-dark-blue/theme";
   .p-menubar {
-    padding: 0.25rem;
+    // padding: 0.5rem;
+    height: 4rem;
+    border: none;
   }
 }
+
 :root,
 :root.light {
   --surface-a:#ffffff;
@@ -110,4 +115,43 @@
 main .p-panel .p-panel-header {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  width: 8px;
+
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border: solid 2px #f1f1f1;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@for $i from 1 through 8 {
+  .c-shadow-#{$i} {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.03), 0 0 1rem rgba(0, 0, 0, 0.04), 0px 1px 1rem rgba(0, 0, 0, 0.04);
+  }
+}
+
+.p-card {
+  .p-card-body {
+    // padding: 0.75rem;
+    .p-card-title {
+      font-size: large;
+    }
+  }
 }
