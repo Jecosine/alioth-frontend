@@ -4,12 +4,12 @@
       <div class="col-8 col-offset-2">
         <div class="grid">
           <div class="col-12">
-            <nav-menu class="mb-2 sticky c-shadow-8 bg-white"></nav-menu>
+            <nav-menu class="mb-2 sticky c-shadow-8"></nav-menu>
           </div>
           <div class="col-12">
             <Image
               class="p-0"
-              image-class="w-full h-16rem overflow-hidden c-shadow-8 mb-2 border-round"
+              image-class="w-full h-17rem overflow-hidden c-shadow-8 mb-2 border-round"
               image-style="object-fit: cover"
               v-if="1 > 2"
               src="/img/banner.jpeg"
@@ -19,7 +19,7 @@
             />
             <Card
               v-else
-              class="h-16rem border-solid border-300 mb-2 c-shadow-8"
+              class="h-17rem border-solid border-300 mb-2 c-shadow-8"
             >
               <!-- <template #title> Simple Card </template>
       <template #content>
@@ -33,7 +33,7 @@
             </Card>
           </div>
           <div class="col-12 col-12 lg:col-8 mb-2">
-            <Notification class="c-shadow-8" />
+            <Announcement class="c-shadow-8" />
           </div>
           <div class="col-12 lg:col-4 mb-2">
             <Daily class="c-shadow-8" />
@@ -50,7 +50,7 @@
 <script lang="ts">
 import NavigatorVue from "@/components/Navigator.vue";
 import { defineComponent } from "vue";
-import Notification from "@/components/Notification.vue";
+import Announcement from "@/components/Announcement.vue";
 import Daily from "../components/Daily.vue";
 import ActivityPanel from "@/components/ActivityPanel.vue";
 
@@ -58,7 +58,7 @@ export default defineComponent({
   name: "HomeView",
   components: {
     "nav-menu": NavigatorVue,
-    Notification,
+    Announcement,
     Daily,
     ActivityPanel,
   },

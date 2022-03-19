@@ -1,6 +1,8 @@
 <template>
   <Card>
-    <template #title> <span>Notification</span> </template>
+    <template #title>
+      <i class="pi pi-inbox"></i><span> Annoucement</span>
+    </template>
     <Divider />
     <template #content>
       <div class="content-block">
@@ -27,7 +29,6 @@ import { MenuItem } from "primevue/menuitem";
 import { ref } from "vue";
 import { useToast } from "primevue/usetoast";
 import Divider from "primevue/divider";
-import Notification from "@/components/Notification.vue";
 
 const toast = useToast();
 const toggleMenu = ref<Menu | null>(null);

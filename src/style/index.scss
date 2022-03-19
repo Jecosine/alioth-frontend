@@ -16,17 +16,18 @@
 
 :root,
 :root.light {
-  --surface-a:#ffffff;
-  --surface-b:#faf9f8;
-  --surface-c:#f3f2f1;
-  --surface-d:#edebe9;
-  --surface-e:#ffffff;
-  --surface-f:#ffffff;
-  --text-color:#323130;
-  --text-color-secondary:#605e5c;
-  --primary-color:#E99D9D;
-  --primary-color-text:#ffffff;
-  --font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --surface-a: #ffffff;
+  --surface-b: #faf9f8;
+  --surface-c: #f3f2f1;
+  --surface-d: #edebe9;
+  --surface-e: #ffffff;
+  --surface-f: #ffffff;
+  --text-color: #323130;
+  --text-color-secondary: #605e5c;
+  --primary-color: #e99d9d;
+  --primary-color-text: #ffffff;
+  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --surface-0: #ffffff;
   --surface-50: #f3f2f1;
   --surface-100: #e1dfdd;
@@ -48,31 +49,32 @@
   --gray-700: #252423;
   --gray-800: #1b1a19;
   --gray-900: #11100f;
-  --content-padding:1rem;
-  --inline-spacing:0.5rem;
-  --border-radius:2px;
-  --surface-ground:#faf9f8;
-  --surface-section:#ffffff;
-  --surface-card:#ffffff;
-  --surface-overlay:#ffffff;
-  --surface-border:#edebe9;
-  --surface-hover:#f3f2f1;
+  --content-padding: 1rem;
+  --inline-spacing: 0.5rem;
+  --border-radius: 2px;
+  --surface-ground: #faf9f8;
+  --surface-section: #ffffff;
+  --surface-card: #ffffff;
+  --surface-overlay: #ffffff;
+  --surface-border: #edebe9;
+  --surface-hover: #f3f2f1;
   --focus-ring: inset 0 0 0 1px #605e5c;
   --maskbg: rgba(0, 0, 0, 0.4);
 }
 
 :root.dark {
-  --surface-a:#071426;
-  --surface-b:#040d19;
-  --surface-c:rgba(255, 255, 255, 0.03);
-  --surface-d:#0b213f;
-  --surface-e:#071426;
-  --surface-f:#071426;
-  --text-color:rgba(255, 255, 255, 0.87);
-  --text-color-secondary:rgba(255, 255, 255, 0.6);
-  --primary-color:#E99D9D;
-  --primary-color-text:#1c2127;
-  --font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --surface-a: #071426;
+  --surface-b: #040d19;
+  --surface-c: rgba(255, 255, 255, 0.03);
+  --surface-d: #0b213f;
+  --surface-e: #071426;
+  --surface-f: #071426;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --text-color-secondary: rgba(255, 255, 255, 0.6);
+  --primary-color: #e99d9d;
+  --primary-color-text: #1c2127;
+  --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --surface-0: #040d19;
   --surface-50: #1d2530;
   --surface-100: #363d47;
@@ -94,15 +96,15 @@
   --gray-700: #363d47;
   --gray-800: #1d2530;
   --gray-900: #040d19;
-  --content-padding:1.25rem;
-  --inline-spacing:0.5rem;
-  --border-radius:6px;
-  --surface-ground:#040d19;
-  --surface-section:#040d19;
-  --surface-card:#071426;
-  --surface-overlay:#071426;
-  --surface-border:#0b213f;
-  --surface-hover:rgba(255,255,255,.03);
+  --content-padding: 1.25rem;
+  --inline-spacing: 0.5rem;
+  --border-radius: 6px;
+  --surface-ground: #040d19;
+  --surface-section: #040d19;
+  --surface-card: #071426;
+  --surface-overlay: #071426;
+  --surface-border: #0b213f;
+  --surface-hover: rgba(255, 255, 255, 0.03);
   --focus-ring: 0 0 0 0.2rem rgba(147, 197, 253, 0.5);
   --maskbg: rgba(0, 0, 0, 0.4);
 }
@@ -110,7 +112,7 @@
   line-height: 3rem;
 }
 .vertical-align-middle {
-  vertical-align: middle!important;
+  vertical-align: middle !important;
 }
 main .p-panel .p-panel-header {
   padding-top: 0.5rem;
@@ -143,7 +145,8 @@ main .p-panel .p-panel-header {
 
 @for $i from 1 through 8 {
   .c-shadow-#{$i} {
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.03), 0 0 1rem rgba(0, 0, 0, 0.04), 0px 1px 1rem rgba(0, 0, 0, 0.04);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.03), 0 0 1rem rgba(0, 0, 0, 0.04),
+      0px 1px 1rem rgba(0, 0, 0, 0.04);
   }
 }
 
@@ -151,7 +154,16 @@ main .p-panel .p-panel-header {
   .p-card-body {
     // padding: 0.75rem;
     .p-card-title {
-      font-size: large;
+      display: flex;
+      span {
+        line-height: 1;
+        font-size: large;
+      }
+      i {
+        font-size: large;
+        line-height: 1;
+        margin-right: 0.5rem;
+      }
     }
   }
 }
