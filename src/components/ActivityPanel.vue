@@ -1,13 +1,28 @@
 <template>
-  <panel header="Activities" class="my-3">
-    <template #icons>
-      <button class="p-panel-header-icon p-link mr-2" @click="toggle">
-        <span class="pi pi-cog"></span>
-      </button>
-      <Menu id="act_menu" ref="toggleMenu" :model="items" :popup="true" />
+  <Card>
+    <template #title> Activity </template>
+    <template #content>
+      <div class="w-full sm:hidden lg:block">
+        <svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <g v-for="i in 52" :key="`col-${i}`">
+              <rect
+                v-for="j in 7"
+                rx="2"
+                height="16"
+                width="16"
+                :y="j * 20"
+                :x="i * 20"
+                stroke="transparent"
+                :fill="`rgba(123,123,123,${Math.random()})`"
+                :key="`col-${i}-row-${j}`"
+              />
+            </g>
+          </g>
+        </svg>
+      </div>
     </template>
-    <div class="w-full"></div>
-  </panel>
+  </Card>
 </template>
 <script lang="ts" setup>
 import Menu from "primevue/menu";

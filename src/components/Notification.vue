@@ -1,27 +1,25 @@
 <template>
-  <Panel header="Notification" class="my-3">
-    <template #icons>
-      <button class="p-panel-header-icon p-link mr-2" @click="toggle">
-        <span class="pi pi-cog"></span>
-      </button>
-      <Menu id="config_menu" ref="toggleMenu" :model="items" :popup="true" />
-    </template>
-    <div class="content-block">
-      <ul class="m-0 p-0">
-        <template v-for="(item, i) in 3" :key="`sk-${i}`">
-          <li class="mb-3">
-            <div class="flex">
-              <div style="flex: 1">
-                <Skeleton width="100%" class="mb-2"></Skeleton>
-                <Skeleton width="75%"></Skeleton>
+  <Card>
+    <template #title> <span>Notification</span> </template>
+    <Divider />
+    <template #content>
+      <div class="content-block">
+        <ul class="m-0 p-0">
+          <template v-for="(item, i) in 3" :key="`sk-${i}`">
+            <li class="mb-3">
+              <div class="flex">
+                <div style="flex: 1">
+                  <Skeleton width="100%" class="mb-2"></Skeleton>
+                  <Skeleton width="75%"></Skeleton>
+                </div>
               </div>
-            </div>
-          </li>
-          <Divider />
-        </template>
-      </ul>
-    </div>
-  </Panel>
+            </li>
+            <Divider />
+          </template>
+        </ul>
+      </div>
+    </template>
+  </Card>
 </template>
 <script lang="ts" setup>
 import Menu from "primevue/menu";
@@ -29,6 +27,7 @@ import { MenuItem } from "primevue/menuitem";
 import { ref } from "vue";
 import { useToast } from "primevue/usetoast";
 import Divider from "primevue/divider";
+import Notification from "@/components/Notification.vue";
 
 const toast = useToast();
 const toggleMenu = ref<Menu | null>(null);
