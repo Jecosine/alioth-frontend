@@ -1,23 +1,27 @@
 <template>
-  <div class="pt-8">
-    <nav-menu
-      class="fixed"
-      style="width: calc(100% - 2rem); top: 1rem"
-    ></nav-menu>
-    <Image
-      image-class="w-full h-12rem overflow-hidden"
-      image-style="object-fit: cover"
-      v-if="1 > 2"
-      src="/img/banner.jpeg"
-      alt="Not available"
-      width="100%"
-      size="cover"
-    />
-    <Card
-      v-else
-      class="col-12 h-12rem shadow-none border-solid surface-50 border-300"
-    >
-      <!-- <template #title> Simple Card </template>
+  <div class="">
+    <main class="grid-nogutter">
+      <div class="col-8 col-offset-2">
+        <div class="grid">
+          <div class="col-12">
+            <nav-menu class="mb-2 sticky c-shadow-8 bg-white"></nav-menu>
+          </div>
+          <div class="col-12">
+            <Image
+              class="p-0"
+              image-class="w-full h-16rem overflow-hidden c-shadow-8 mb-2 border-round"
+              image-style="object-fit: cover"
+              v-if="1 > 2"
+              src="/img/banner.jpeg"
+              alt="Not available"
+              width="100%"
+              size="cover"
+            />
+            <Card
+              v-else
+              class="h-16rem border-solid border-300 mb-2 c-shadow-8"
+            >
+              <!-- <template #title> Simple Card </template>
       <template #content>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
@@ -26,11 +30,19 @@
           esse, cupiditate neque quas!
         </p>
       </template> -->
-    </Card>
-    <main class="grid">
-      <Notification class="col-12 md:col-6 lg:col-8" />
-      <Daily class="col-12 md:col-6 lg:col-4" />
-      <ActivityPanel class="col-12 md:col-6 lg:col-8" />
+            </Card>
+          </div>
+          <div class="col-12 col-12 lg:col-8 mb-2">
+            <Notification class="c-shadow-8" />
+          </div>
+          <div class="col-12 lg:col-4 mb-2">
+            <Daily class="c-shadow-8" />
+          </div>
+          <div class="col-12 md:col-12 xl:col-8">
+            <ActivityPanel class="c-shadow-8" />
+          </div>
+        </div>
+      </div>
     </main>
   </div>
 </template>
