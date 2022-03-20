@@ -4,7 +4,7 @@
       <div class="col-8 col-offset-2">
         <div class="grid">
           <div class="col-12">
-            <nav-menu class="mb-2 sticky c-shadow-8"></nav-menu>
+            <nav-menu class="mb-2 sticky c-shadow-8 surface-0"></nav-menu>
           </div>
           <div class="col-12">
             <Image

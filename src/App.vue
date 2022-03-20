@@ -4,19 +4,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import bus from "vue3-eventbus";
 const currentTheme = ref("light");
 const appContent = ref(null);
 
 function themeChange() {
-  // console.log("fucking theme changed");
   currentTheme.value = currentTheme.value === "light" ? "dark" : "light";
   document.documentElement.className = currentTheme.value;
-  // appContent.value.className = currentTheme.value;
-  // console.log(appContent.value);
 }
-bus.on("themeChange", themeChange);
+onMounted(() => {
+  bus.on("themeChange", themeChange);
+});
 </script>
 <style lang="scss">
 #app {
