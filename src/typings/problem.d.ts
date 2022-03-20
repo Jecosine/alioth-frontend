@@ -12,3 +12,11 @@ declare interface ProblemMinimal {
   author: UserDataMinimal;
   tags: Array<ProblemTagMinimal>;
 }
+
+type ProblemListInPage = ItemListInPage<
+  T extends ProblemMinimal ? T : ProblemMinimal
+>;
+
+type ProblemListTableModel = ItemListTableModel<
+  T extends ProblemMinimal ? T : ProblemMinimal
+>;
