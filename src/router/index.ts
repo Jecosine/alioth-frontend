@@ -34,8 +34,26 @@ const routes: Array<RouteRecordRaw> = [
         name: "user",
         component: () =>
           import(
-            /* webpackChunkName: "user" */ "../views/user/UserProfileView.vue"
+            /* webpackChunkName: "userProfile" */ "../views/user/UserProfileView.vue"
           ),
+        children: [
+          {
+            path: "profile",
+            name: "userProfile",
+            component: () =>
+              import(
+                /* webpackChunkName: "userProfile" */ "../views/user/UserProfileSubview.vue"
+              ),
+          },
+          {
+            path: "account",
+            name: "userAccount",
+            component: () =>
+              import(
+                /* webpackChunkName: "userAccount" */ "../views/user/UserAccountSubview.vue"
+              ),
+          },
+        ],
       },
       {
         path: "problem",

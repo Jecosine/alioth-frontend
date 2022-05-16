@@ -80,20 +80,45 @@ export const dialMenu: MenuItem[] = [
 export const userMenu: MenuItem[] = [
   {
     label: "My Profile",
-    icon: "pi pi-refresh",
+    icon: "fa-solid fa-address-card",
+    to: "/user",
   },
   {
-    label: "Delete",
-    icon: "pi pi-times",
+    label: "Console",
+    icon: "fa-solid fa-terminal",
+    to: "/console",
   },
   {
-    label: "Vue Website",
-    icon: "pi pi-external-link",
-    url: "https://vuejs.org/",
+    label: "Settings",
+    icon: "fa-solid fa-gear",
+    to: "/settings",
   },
   {
-    label: "Router",
-    icon: "pi pi-upload",
-    to: "/fileupload",
+    label: "Logout",
+    icon: "fa-solid fa-arrow-right-from-bracket",
+    to: "/logout",
+  },
+];
+
+export const userProfileMenu: MenuItem[] = [
+  {
+    label: "Profile",
+    icon: "fa-solid fa-id-badge",
+    to: "/user/profile",
+  },
+  {
+    label: "Account",
+    icon: "fa-solid fa-user",
+    to: "/user/account",
+  },
+  {
+    label: "Privacy",
+    icon: "fa-solid fa-lock",
+    to: "/user/privacy",
+  },
+  {
+    label: "Logout",
+    icon: "fa-solid fa-arrow-right-from-bracket",
+    to: "/logout",
   },
 ];
