@@ -1,0 +1,72 @@
+enum ContestScope {
+    ALL
+    PARTICIPANT
+    TEAM
+}
+type ContestAccess {
+    id: ID!
+    resource: Contest!
+    user: User
+    group: AccessGroup
+    # access code definition (0b0000 - 0b1111)
+    access: Int!
+}
+type ContestParticipateRequest {
+    id: ID!
+    applicant: User!
+    operator: User
+    status: ParticipateContestStatus!
+    contest: Contest!,
+    createdTime: Time!
+    acceptedTime: Time
+}
+
+enum ParticipateContestStatus {
+    PENDING
+    ACCEPTED
+    REJECTED
+    RECALLED
+}
+
+type ContestParticipateInvitation {
+    id: ID!
+    invitee: User!
+    inviter: User!
+    status: ParticipateContestStatus!
+    contest: Contest!,
+    createdTime: Time!
+    acceptedTime: Time
+}
+
+input ContestInput {
+    name: String!
+    introduction: String!
+    contestAccess: ContestScope!
+    startTime: Time!
+    endTime: Time!
+    participants: [ID]
+    invitees: [ID]
+}
+
+input ContestWithId {
+    id: ID!
+    name: String!
+    scope: ContestScope!
+    startTime: Time!
+    endTime: Time!
+    participants: [ID]
+    invitees: [ID]
+}
+
+extend type Mutation {
+    createContest(role: RoleInput!, contestInput: ContestInput): Contest @hasRole(role: TEAM_ADMIN)
+    updateContest(role: RoleInput!, contestInput: ContestWithId): Contest @writeAccess
+    deleteContest(role: RoleInput!, contestId: ID!): Reply @deleteAccess
+}
+
+extend type Query {
+    contest(contestId: ID!): Contest @readAccess
+    # list contest for logon users
+    availableContest(auth: AuthInput!): [Contest]! @auth
+    problemsInContest(access: AccessInput!, contestId: ID!): [Problem]! @readAccess
+}

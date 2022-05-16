@@ -1,0 +1,83 @@
+type Team {
+    id: ID!
+    name: String!
+    description: String!
+    creator: User!
+    members: [User!]!
+    admins: [User!]!
+    createdTime: Time!
+    announcements: [Announcement]
+    private: Boolean!
+}
+
+enum TaskStatus {
+    Expired,
+    Finished,
+    Waiting,
+    Canceled,
+}
+enum TaskType {
+    Problem,
+    Custom,
+    Meeting,
+    Submission,
+}
+
+type Task {
+    id: ID!,
+    name: String!,
+    taskType: TaskType,
+    content: String,
+    assignees: [User]!,
+    status: TaskStatus!,
+    parentList: TaskList,
+}
+
+type TaskList {
+    id: ID!,
+    name: String!,
+    assignees: [User]!,
+    deadline: Time!,
+    status: TaskStatus!,
+    relyTaskList: TaskList,
+    tasks: [Task!]!,
+}
+
+input TeamInput {
+    name: String!
+    description: String!
+    operatorId: ID!
+    members: [ID]
+    admins: [ID]
+}
+input TeamInputWithId {
+    teamId: ID!
+    name: String!
+    private: Boolean!
+    description: String!
+    operatorId: ID!
+    #    members: [ID]
+    #    admins: [ID]
+}
+
+extend type Mutation {
+    addTeam(auth: AuthInput!, team: TeamInput!): Team @auth
+    updateTeam(role: RoleInput!, team: TeamInputWithId!): Team @hasRole(role: TEAM_ADMIN)
+    # TODO: Remove setPrivate
+    setPrivate(role: RoleInput!, private: Boolean!, teamId: ID!): Team @hasRole(role: TEAM_ADMIN)
+    setAdmins(role: RoleInput!, admins: [ID!]!): Reply @hasRole(role: TEAM_ADMIN)
+    removeAdmins(role: RoleInput!, admins: [ID!]!): Reply @hasRole(role: TEAM_OWNER)
+    addMembers(role: RoleInput!, members: [ID!]!): Reply @hasRole(role: TEAM_ADMIN)
+    kickMembers(role: RoleInput!, members: [ID!]!): Reply @hasRole(role: TEAM_ADMIN)
+}
+
+extend type Query {
+    getTeamByName(auth: AuthInput!, teamName: String!): Team @auth
+    getTeamById(auth: AuthInput!, teamId: ID!): Team @auth
+    getAvailableTeams(auth: AuthInput!): [Team]! @auth
+    searchTeamByName(auth: AuthInput!, searchStr: String!): [Team]! @auth
+    teamMembers(role: RoleInput!, teamId: ID!): [User]! @hasRole(role: TEAM_MEMBER)
+    listJoinTeamRequest(role: RoleInput!): [JoinTeamRequest]! @hasRole(role: TEAM_ADMIN)
+    listJoinTeamInvitation(role: RoleInput!): [JoinTeamInvitation]! @hasRole(role: TEAM_ADMIN)
+
+}

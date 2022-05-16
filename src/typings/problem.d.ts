@@ -13,6 +13,13 @@ declare interface ProblemMinimal {
   tags: Array<ProblemTagMinimal>;
 }
 
+declare interface ProblemInput {
+  title: string;
+  content: string;
+  author: number;
+  tags: Array<number>;
+}
+declare type Problems = Array<ProblemMinimal>;
 type ProblemListInPage = ItemListInPage<
   T extends ProblemMinimal ? T : ProblemMinimal
 >;

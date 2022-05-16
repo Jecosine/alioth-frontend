@@ -6,18 +6,17 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve:prod": "vue-cli-service serve --mode production",
-    "serve:dev": "vue-cli-service serve --mode development",
+    "serve:dev": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test": "jest",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "apollo-boost": "^0.4.9",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-client": "^2.6.10",
-    "apollo-link": "^1.2.14",
-    "apollo-link-http": "^1.5.17",
+    "@apollo/client": "^3.6.2",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@vue/apollo-composable": "^4.0.0-alpha.17",
+    "@vue/apollo-option": "^4.0.0-alpha.17",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "graphql": "^16.4.0",
@@ -53,6 +52,7 @@
     "autoprefixer": "^10.4.2",
     "babel-jest": "^27.0.6",
     "directory-named-webpack-plugin": "^4.0.1",
+    "dotenv": "^16.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
@@ -64,6 +64,7 @@
     "sass-loader": "^10.0.0",
     "tailwindcss": "^3.0.23",
     "ts-jest": "^27.0.4",
-    "typescript": "~4.5.5"
+    "typescript": "~4.5.5",
+    "vue-cli-plugin-apollo": "~0.22.2"
   }
 }

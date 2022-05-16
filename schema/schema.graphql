@@ -1,0 +1,16 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Query {
+    pingQ: String!
+}
+
+type Mutation {
+    pingM: String!
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}

@@ -1,17 +1,19 @@
 /* eslint-disable vue/multi-word-component-names */
-import { createApp } from "vue";
+import { createApp, provide, h } from "vue";
+import { ApolloClients } from "@vue/apollo-composable";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
-import store from "./store";
-
+import { store, key } from "./store";
+// import VueApollo from "vue-apollo";
+import { apolloClient } from "@/utils/apollo-client";
 import eventBus from "vue3-eventbus";
 
 // import "@/style/tailwind.css";
 import "primeflex/primeflex.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
-
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import PrimeVue from "primevue/config";
 import AutoComplete from "primevue/autocomplete";
 import Accordion from "primevue/accordion";
@@ -107,12 +109,20 @@ import TreeTable from "primevue/treetable";
 import TriStateCheckbox from "primevue/tristatecheckbox";
 import VirtualScroller from "primevue/virtualscroller";
 
-const app = createApp(App);
-app.use(store).use(router);
+const app = createApp({
+  setup() {
+    provide(ApolloClients, {
+      default: apolloClient,
+    });
+  },
+  render: () => h(App),
+});
+app.use(store, key).use(router);
 
 app.use(PrimeVue, { ripple: true });
 app.use(ConfirmationService);
 app.use(ToastService);
+
 app.directive("tooltip", Tooltip);
 app.directive("badge", BadgeDirective);
 app.directive("ripple", Ripple);
@@ -207,6 +217,7 @@ app.component("TriStateCheckbox", TriStateCheckbox);
 app.component("VirtualScroller", VirtualScroller);
 
 import "@/style/index.scss";
+import { ApolloClient } from "@apollo/client/core";
 
 app.use(eventBus);
 app.mount("#app");

@@ -1,0 +1,23 @@
+directive @hasRole(role: RoleType!, id: ID) on FIELD_DEFINITION
+directive @auth on FIELD_DEFINITION | OBJECT | MUTATION | QUERY
+directive @taskListFinished on FIELD_DEFINITION
+
+
+# abac
+# search accesses by resource, switch cases:
+# 1. no result for resource - ALL
+# 2. else -> search operator
+# 3. exist - Analyse access code -> ...
+# 4. else -> no access
+directive @writeAccess on FIELD_DEFINITION | OBJECT | MUTATION
+directive @deleteAccess on FIELD_DEFINITION | OBJECT | MUTATION
+directive @readAccess on FIELD_DEFINITION | OBJECT | QUERY
+directive @submitAccess on FIELD_DEFINITION | OBJECT | MUTATION
+
+enum RoleType {
+    ADMIN
+    TEAM_OWNER
+    TEAM_ADMIN
+    TEAM_MEMBER
+    USER
+}

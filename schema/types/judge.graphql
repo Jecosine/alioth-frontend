@@ -1,0 +1,79 @@
+type JudgeRequest {
+    id: ID!,
+    user: User!,
+    createdTime: Time!,
+    source_code: String!,
+    problem: Problem!
+}
+enum JudgeStatus {
+    TLE
+    MLE
+    WA
+    AC
+    RTE
+    UE
+    PENDING
+}
+input JudgeRequestInput {
+    userId: ID!
+    problemId: ID!
+    judgeRecordId: ID!
+    code: String!
+    status: JudgeStatus!
+}
+type JudgeRecord {
+    id: ID!
+    user: User!
+    code: String!
+    createdTime: Time!
+    judgeTime: Time
+    finishedTime: Time
+    timeCost: Int
+    memoryCost: Int
+    problem: Problem!
+    status: JudgeStatus!
+}
+type JudgeReply {
+    id: ID!
+    user: User!
+    judgeTime: Time!
+    finishedTime: Time!
+    timeCost: Int!
+    memoryCost: Int!
+    status: JudgeStatus
+}
+input RecordInput {
+    userId: ID!
+    judgeTime: Time!
+    finishTime: Time
+    problemId: ID!
+    status: JudgeStatus!
+}
+
+input RecordInputWithId {
+    recordId: ID!
+    userId: ID!
+    judgeTime: Time!
+    finishTime: Time
+    problemId: ID!
+    status: JudgeStatus!
+}
+input FinishJudgeInput {
+    recordId: ID!
+    finishTime: Time!
+    status: JudgeStatus!
+    memoryCost: Int!
+}
+extend type Mutation {
+    updateJudgeRecord(record: RecordInputWithId!): JudgeRecord
+    setStatus(status: JudgeStatus!, recordId: ID!): JudgeRecord
+    finishJudge(record: FinishJudgeInput!): JudgeRecord
+}
+
+extend type Query {
+    record(id: ID!): JudgeRecord
+    getRecordsByProblem(problemId: ID!): [JudgeRecord]!
+    getRecordsByUser(userId: ID!): [JudgeRecord]!
+    getLastRecordByUserAndProblem(problemId: ID!, userId: ID!): JudgeRecord
+#    getRecordsByContest
+}

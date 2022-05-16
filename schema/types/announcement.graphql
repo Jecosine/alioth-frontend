@@ -1,0 +1,38 @@
+type Announcement {
+    id: ID!
+    title: String!
+    author: User!
+    content: String!
+    createdTime: Time!
+    modifiedTime: Time!
+    team: Team
+    accessCode: Int!
+}
+type AnnouncementAccess {
+    id: ID!
+    resource: Announcement!
+    user: User
+    group: AccessGroup
+    # access code definition (0b0000 - 0b1111)
+    access: Int!
+}
+input AnnouncementInput {
+    title: String!
+    userId: ID!
+    content: String!
+}
+input AnnouncementInputWithID {
+    announcementId: ID!
+    title: String!
+    userId: ID!
+    content: String!
+}
+extend type Mutation  {
+    createAnnouncement(role: RoleInput!, announcementInput: AnnouncementInput!): Announcement @hasRole(role: TEAM_ADMIN)
+    updateAnnouncement(access: AccessInput, announcementInput: AnnouncementInputWithID!): Announcement @writeAccess
+    deleteAnnouncement(access: AccessInput, announcementId: ID!): Reply @deleteAccess
+}
+extend type Query {
+    announcement(access: AccessInput!): Announcement @readAccess
+    getAnnouncements(role: RoleInput!): [Announcement] @hasRole(role: TEAM_MEMBER)
+}

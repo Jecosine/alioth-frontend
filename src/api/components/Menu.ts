@@ -1,4 +1,4 @@
-import { MenuItem } from "primevue/menuitem";
+import { MenuItem, MenuItemCommandEvent } from "primevue/menuitem";
 import eventBus from "vue3-eventbus";
 import { useToast } from "primevue/usetoast";
 export interface IMenuItem {
@@ -20,10 +20,10 @@ export interface IMenuItem {
 export type IMenu = Array<IMenuItem>;
 
 export const navigationMenu: MenuItem[] = [
-  {
-    label: "Training",
-    icon: "pi pi-fw pi-book",
-  },
+  // {
+  //   label: "Training",
+  //   icon: "pi pi-fw pi-book",
+  // },
   {
     label: "Todos",
     icon: "pi pi-fw pi-check-square",
@@ -33,92 +33,53 @@ export const navigationMenu: MenuItem[] = [
     icon: "pi pi-fw pi-users",
     items: [
       {
-        label: "Left",
-        icon: "pi pi-fw pi-align-left",
+        label: "Discovery",
+        icon: "fa-regular fa-compass",
+        to: "/teamDiscovery",
       },
       {
-        label: "Right",
-        icon: "pi pi-fw pi-align-right",
-      },
-      {
-        label: "Center",
-        icon: "pi pi-fw pi-align-center",
-      },
-      {
-        label: "Justify",
-        icon: "pi pi-fw pi-align-justify",
+        label: "My Teams",
+        icon: "fa-solid fa-user-group",
+        to: "/myTeams",
       },
     ],
   },
   {
     label: "Contest",
-    icon: "pi pi-fw pi-flag",
-    items: [
-      {
-        label: "New",
-        icon: "pi pi-fw pi-user-plus",
-      },
-      {
-        label: "Delete",
-        icon: "pi pi-fw pi-user-minus",
-      },
-      {
-        label: "Search",
-        icon: "pi pi-fw pi-users",
-        items: [
-          {
-            label: "Filter",
-            icon: "pi pi-fw pi-filter",
-            items: [
-              {
-                label: "Print",
-                icon: "pi pi-fw pi-print",
-              },
-            ],
-          },
-          {
-            icon: "pi pi-fw pi-bars",
-            label: "List",
-          },
-        ],
-      },
-    ],
+    icon: "fa-regular fa-chess-king",
   },
   {
     label: "Problems",
-    icon: "pi pi-fw pi-list",
-    items: [
-      {
-        label: "Edit",
-        icon: "pi pi-fw pi-pencil",
-        items: [
-          {
-            label: "Save",
-            icon: "pi pi-fw pi-calendar-plus",
-          },
-          {
-            label: "Delete",
-            icon: "pi pi-fw pi-calendar-minus",
-          },
-        ],
-      },
-      {
-        label: "Archieve",
-        icon: "pi pi-fw pi-calendar-times",
-        items: [
-          {
-            label: "Remove",
-            icon: "pi pi-fw pi-calendar-minus",
-          },
-        ],
-      },
-    ],
+    icon: "fa-regular fa-file-code",
+    to: "/problem",
   },
 ];
-
+export const dialMenu: MenuItem[] = [
+  {
+    label: "Search",
+    icon: "pi pi-search",
+    command(event: MenuItemCommandEvent) {
+      console.log(event);
+    },
+  },
+  {
+    label: "Search",
+    icon: "pi pi-search",
+    command(event: MenuItemCommandEvent) {
+      console.log(event);
+    },
+  },
+  {
+    label: "Search",
+    icon: "pi pi-search",
+    command(event: MenuItemCommandEvent) {
+      console.log(event);
+    },
+  },
+];
 export const userMenu: MenuItem[] = [
   {
-    label: "Update",
+    label: "My Profile",
     icon: "pi pi-refresh",
   },
   {

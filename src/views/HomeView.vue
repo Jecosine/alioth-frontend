@@ -1,66 +1,48 @@
 <template>
   <div class="">
+    <header class="grid-nogutter mb-2">
+      <div
+        class="xl:col-10 xl:col-offset-1 lg:col-12 lg:col-offset-0 sm:col-12 sm:col-offset-0"
+      >
+        <Navigator class="sticky c-shadow-8 surface-a"></Navigator>
+      </div>
+    </header>
     <main class="grid-nogutter">
-      <div class="col-8 col-offset-2">
-        <div class="grid">
-          <div class="col-12">
-            <nav-menu class="mb-2 sticky c-shadow-8 surface-0"></nav-menu>
-          </div>
-          <div class="col-12">
-            <Image
-              class="p-0"
-              image-class="w-full h-17rem overflow-hidden c-shadow-8 mb-2 border-round"
-              image-style="object-fit: cover"
-              v-if="1 > 2"
-              src="/img/banner.jpeg"
-              alt="Not available"
-              width="100%"
-              size="cover"
-            />
-            <Card
-              v-else
-              class="h-17rem border-solid border-300 mb-2 c-shadow-8"
-            >
-              <!-- <template #title> Simple Card </template>
-      <template #content>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-          sed consequuntur error repudiandae numquam deserunt quisquam repellat
-          libero asperiores earum nam nobis, culpa ratione quam perferendis
-          esse, cupiditate neque quas!
-        </p>
-      </template> -->
-            </Card>
-          </div>
-          <div class="col-12 col-12 lg:col-8 mb-2">
-            <Announcement class="c-shadow-8" />
-          </div>
-          <div class="col-12 lg:col-4 mb-2">
-            <Daily class="c-shadow-8" />
-          </div>
-          <div class="col-12 md:col-12 xl:col-8">
-            <ActivityPanel class="c-shadow-8" />
-          </div>
-        </div>
+      <div
+        class="xl:col-10 xl:col-offset-1 lg:col-12 lg:col-offset-0 sm:col-12 sm:col-offset-0"
+      >
+        <router-view />
       </div>
     </main>
+    <footer class="grid-nogutter">
+      <div
+        class="lg:col-6 lg:col-offset-3 md:col-10 md:col-offset-1 mt-4 border-300 flex justify-content-center align-items-center"
+      >
+        <div class="footer-divider border-300"></div>
+        <Image src="/img/icons/Logo.svg" imageClass="h-2rem mx-4" />
+        <div class="footer-divider border-300"></div>
+      </div>
+      <div
+        class="lg:col-6 lg:col-offset-3 md:col-10 md:col-offset-1 mt-4 pb-6 border-300 flex justify-content-center align-items-center h-2rem line-height-1 text-400"
+      >
+        Copyright©2022 Alioth OJ - Jecosine️
+      </div>
+    </footer>
   </div>
 </template>
 
-<script lang="ts">
-import NavigatorVue from "@/components/Navigator.vue";
-import { defineComponent } from "vue";
-import Announcement from "@/components/Announcement.vue";
-import Daily from "../components/Daily.vue";
-import ActivityPanel from "@/components/ActivityPanel.vue";
-
-export default defineComponent({
-  name: "HomeView",
-  components: {
-    "nav-menu": NavigatorVue,
-    Announcement,
-    Daily,
-    ActivityPanel,
-  },
-});
+<script lang="ts" setup>
+import Navigator from "@/components/Navigator.vue";
 </script>
+<style lang="scss" scoped>
+.footer-divider {
+  width: 30%;
+  border-top: solid 1px black;
+}
+
+//::v-deep(.dial-container) {
+//  .p-speeddial-direction-up {
+//
+//  }
+//}
+</style>

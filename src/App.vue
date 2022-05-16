@@ -43,15 +43,10 @@ nav {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: var(--surface-ground);
   font-family: var(--font-family);
   font-weight: 400;
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  background: -webkit-linear-gradient(top, transparent 23px, #eee 0),
-    -webkit-linear-gradient(left, transparent 23px, #eee 0);
-  background-size: 24px 24px;
 }
 </style>

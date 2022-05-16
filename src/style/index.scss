@@ -1,12 +1,15 @@
 @import "./reset";
-@import "primevue/resources/themes/lara-light-blue/theme";
+@import "./light_blue";
+
 .p-menubar {
   // padding: 0.5rem;
   height: 4rem;
   border: none;
 }
+
 .dark {
-  @import "primevue/resources/themes/lara-dark-blue/theme";
+  @import "./dark";
+
   .p-menubar {
     // padding: 0.5rem;
     height: 4rem;
@@ -25,9 +28,11 @@
   --text-color: #323130;
   --text-color-secondary: #605e5c;
   --primary-color: #e99d9d;
+  --primary-color-hover: rgba(246, 178, 178, 0.38);
+  --primary-color-darker: #d98198;
   --primary-color-text: #ffffff;
   --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
-    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --surface-0: #ffffff;
   --surface-50: #f3f2f1;
   --surface-100: #e1dfdd;
@@ -73,8 +78,10 @@
   --text-color-secondary: rgba(255, 255, 255, 0.6);
   --primary-color: #e99d9d;
   --primary-color-text: #1c2127;
+  --primary-color-hover: rgb(255, 209, 209);
+  --primary-color-darker: #d98198;
   --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
-    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   --surface-0: #040d19;
   --surface-50: #1d2530;
   --surface-100: #363d47;
@@ -105,15 +112,18 @@
   --surface-overlay: #071426;
   --surface-border: #0b213f;
   --surface-hover: rgba(255, 255, 255, 0.03);
-  --focus-ring: 0 0 0 0.2rem rgba(147, 197, 253, 0.5);
+  --focus-ring: 0 0 0 0.2rem rgb(255, 209, 209);
   --maskbg: rgba(0, 0, 0, 0.4);
 }
+
 .line-height-3rem {
   line-height: 3rem;
 }
+
 .vertical-align-middle {
   vertical-align: middle !important;
 }
+
 main .p-panel .p-panel-header {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -146,7 +156,7 @@ main .p-panel .p-panel-header {
 @for $i from 1 through 8 {
   .c-shadow-#{$i} {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.03), 0 0 1rem rgba(0, 0, 0, 0.04),
-      0px 1px 1rem rgba(0, 0, 0, 0.04);
+    0px 1px 1rem rgba(0, 0, 0, 0.04);
   }
 }
 
@@ -155,15 +165,48 @@ main .p-panel .p-panel-header {
     // padding: 0.75rem;
     .p-card-title {
       display: flex;
+
       span {
         line-height: 1;
         font-size: large;
       }
+
       i {
         font-size: large;
         line-height: 1;
         margin-right: 0.5rem;
       }
     }
+  }
+}
+
+.mesh-background {
+  background: -webkit-linear-gradient(top, transparent 23px, var(--surface-d) 0),
+  -webkit-linear-gradient(left, transparent 23px, var(--surface-d) 0);
+  background-size: 24px 24px;
+  background-color: var(--surface-ground);
+}
+
+.p-divider-dashed.p-divider-horizontal:before {
+  border-top-style: dashed;
+}
+
+.p-divider {
+  &.p-divider-horizontal:before {
+    border-top-style: solid;
+  }
+
+  &.p-divider.p-divider-vertical:before {
+    border-left-style: solid;
+  }
+}
+
+.dark {
+  .p-divider-dashed.p-divider-horizontal:before {
+    border-top-style: dashed;
+  }
+
+  .p-divider.p-divider-horizontal:before {
+    border-top-style: solid;
   }
 }

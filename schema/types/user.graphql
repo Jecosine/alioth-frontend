@@ -1,0 +1,160 @@
+type User {
+    id: ID!
+    nickname: String!
+    email: String!
+    password: String!
+    avatar: String!
+    createdTime: Time!
+    # team relations
+    teams: [Team]!
+    managed: [Team]!
+    owned: [Team]!
+    joinRequests: [JoinTeamRequest]!
+    joinInvitations: [JoinTeamInvitation]!
+    operatedRequests: [JoinTeamRequest]!
+    sentInvitations: [JoinTeamInvitation]!
+    # announcements
+    announcements: [Announcement]!
+    # judge records
+    records: [JudgeRecord]!
+    # problems
+    createdProblems: [Problem]!
+    solvedProblems: [Problem]!
+    starredProblems: [Problem]!
+    # rbac
+    roles: [Role!]!
+    #contest
+    contests: [Contest]!
+    contestInvitations: [ContestParticipateInvitation]!
+    contestRequests: [ContestParticipateRequest]!
+    # abac access
+    problemAccess: [ProblemAccess]!
+    contestAccess: [ContestAccess]!
+    announcementAccess: [AnnouncementAccess]!
+}
+input UserInput  {
+    nickname: String!
+    email: String!
+    password: String!
+    avatar: String!
+#    resourceId: ID!
+}
+input UserInputWithId {
+    id: ID!
+    nickname: String!
+    email: String!
+    password: String!
+    avatar: String!
+}
+enum RoleScope {
+    GLOBAL
+    TEAM
+}
+type Role {
+    id: ID!
+    name: String!
+    scope: RoleScope!
+    scopeId: ID # denotes team id if scope is TEAM
+    privileges: [Privilege]!
+}
+
+type Privilege {
+    id: ID!
+    name: String!
+    operation: String!
+    roles: [Role]!
+}
+
+input PingInput {
+    msg: String!
+}
+
+enum JoinTeamStatus {
+    PENDING
+    ACCEPTED
+    REJECTED
+    RECALLED
+}
+
+type JoinTeamInvitation {
+    id: ID!
+    invitee: User!
+    inviter: User!
+    team: Team!
+    status: JoinTeamStatus!
+    createdTime: Time!
+    acceptedTime: Time
+}
+type JoinTeamRequest {
+    id: ID!
+    applicant: User!
+    operator: User
+    team: Team!
+    status: JoinTeamStatus!
+    createdTime: Time!
+    acceptedTime: Time
+}
+input LoginInput {
+    email: String!
+    password: String!
+}
+input RegisterInput {
+    nickname: String!
+    email: String!
+    password: String!
+}
+input AuthInput {
+    ownerId: ID!
+}
+input RoleInput {
+    resourceId: ID!
+}
+# Mutation
+extend type Mutation {
+    # auth
+    # TODO: return jwt
+    login(loginForm: LoginInput!) : User
+    register(registerForm: RegisterInput!): User
+    # create single user
+    createUser(user: UserInput!) : User
+    # batch create users
+    batchCreateUser(role: RoleInput!, users: [UserInput!]!): Reply @hasRole(role: TEAM_ADMIN)
+    updateUser(auth: AuthInput!, user: UserInputWithId!): User @auth
+    deleteUser(auth: AuthInput!, userId: ID!): Reply @auth
+
+    # Team mutation
+    requestJoinTeam(auth: AuthInput!, userId: ID!, teamId:ID!): Reply @auth
+    cancelJoinTeam(auth: AuthInput!, requestId: ID!, userId: ID!): Reply @auth
+    permitJoinTeam(role: RoleInput!, requestId: ID!, teamId: ID!): Reply @hasRole(role: TEAM_ADMIN)
+    rejectJoinTeam(requestId: ID!, teamId: ID!): Reply @hasRole(role: TEAM_ADMIN)
+    quitTeam(auth: AuthInput!, userId: ID!, teamId: ID!): User @auth
+    cancelInvitation(role: RoleInput!, inviteId: ID!, userId: ID!): Reply @hasRole(role: TEAM_ADMIN)
+    acceptInvitation(auth: AuthInput!, inviteId: ID!, userId:ID!): Reply @auth
+
+    # Problem mutation
+    submitProblem(auth: AuthInput!, judgeRequest: JudgeRequestInput!): JudgeRecord @auth
+    starProblem(auth: AuthInput!, problemId: ID!): Reply @auth
+    unstarProblem(auth: AuthInput!, problemId: ID!): Reply @auth
+
+    ping(payload: PingInput!) : String
+    pingAuth(auth: AuthInput!, payload: PingInput!) : String @auth
+}
+
+# Query
+extend type Query {
+    currentUser(auth: AuthInput!) : User @auth
+    users: [User]!
+    checkEmailExisted(email: String!) : Boolean!
+    getSimpleUserProfile(userId: ID!): User
+    # team join request and invitation
+#    listJoinTeamRequest(role: RoleInput!, teamId: ID!): [JoinTeamRequest]! @hasRole(role: TEAM_ADMIN) @deprecated(reason: "Move to team mutation")
+    # team invitations and requests for user
+    invitations(role: RoleInput!, userId: ID!): [JoinTeamInvitation]! @hasRole(role: TEAM_ADMIN)
+    requests(role: RoleInput!, userId: ID!): [JoinTeamRequest]! @hasRole(role: TEAM_ADMIN)
+    # problem
+    getStarredProblem(auth: AuthInput!, userId: ID!): [Problem]! @auth
+    getSolvedProblem(auth: AuthInput!, userId: ID!): [Problem]! @auth
+    # contest
+    contestInvitations(auth: AuthInput!, userId: ID!): [ContestParticipateInvitation]! @auth
+    contestRequests(auth: AuthInput!, userId: ID!): [ContestParticipateRequest]! @auth
+}

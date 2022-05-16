@@ -1,0 +1,86 @@
+type Problem {
+    id: ID!
+    title: String!
+    content: String!
+    author: User!
+    tags: [Tag]
+    createdTime: Time!
+    solvedBy: [User]!
+    records: [JudgeRecord]!
+    starred_users: [User]!
+    contests: [Contest]!
+    team: Team
+    scope: ProblemScope!
+    # input and output
+    points: [TestPoint!]!
+    accessCode: Int!
+}
+
+type TestPoint {
+    id: ID!
+    problem: Problem!
+    index: Int!
+    weight: Float!
+    inFile: String!
+    outFile: String!
+}
+## TODO: Problem read/modify/delete access
+enum ProblemScope {
+    ALL
+    CONTEST
+    TEAM_MEMBER
+    TEAM_ADMIN
+    OWNER
+}
+type Tag {
+    id: ID!
+    name: String!
+    problems: [Problem]!
+}
+type ProblemMinimal {
+    id: ID!
+    title: String!
+    author: User!
+    submitCount: Int!
+    solvedCount: Int!
+}
+input ProblemInput {
+    title: String!
+    content: String!
+    author: ID!
+    tags: [ID]
+}
+input ProblemInputWithId {
+    id: ID!
+    title: String!
+    content: String!
+    author: ID!
+    tags: [ID]
+}
+
+input ProblemFilter {
+    tags: [ID]
+}
+
+
+type ProblemAccess {
+    id: ID!
+    resource: Problem!
+    user: User
+    group: AccessGroup
+    # access code definition (0b0000 - 0b1111 || -1)
+    access: Int!
+}
+
+extend type Mutation {
+    addProblem(role: RoleInput!, problem: ProblemInput!): Problem @hasRole(role: TEAM_ADMIN)
+    modifyProblem(role: RoleInput!, problem: ProblemInputWithId!): Problem @writeAccess
+    deleteProblem(role: RoleInput!, problemId: ID!): Reply @deleteAccess
+}
+extend type Query {
+    getAllProblems: [Problem]! @deprecated(reason: "use `getAllAvailableProblems` instead")
+    getAllAvailableProblems(auth: AuthInput!): [Problem]! @auth
+    contestProblem(access: AccessInput!, problemId: ID!): Problem! @readAccess
+    problem(access: AccessInput!, problemId: ID!): Problem! @readAccess
+    getProblemsWithFilter(filter: ProblemFilter): [Problem]!
+}

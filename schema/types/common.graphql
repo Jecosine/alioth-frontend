@@ -1,0 +1,71 @@
+type Reply {
+    code: Int!
+    message: String!
+    Data: Any
+}
+type Contest {
+    id: ID!
+    name: String!
+    introduction: String!
+    initiator: User!
+    hostTeam: Team!
+    problems: [Problem]!
+    participants: [User]!
+    invitations: [ContestParticipateInvitation]!
+    requests: [ContestParticipateRequest]!
+    createdTime: Time!
+    startTime: Time!
+    endTime: Time!
+    scope: [ContestScope]!
+    accessCode: Int!
+}
+interface IRoleInput {
+    # verify if operator has privilege to access resource
+    resourceId: ID!
+}
+
+interface IAuthInput {
+    # compare request resources' owner with context claims
+    ownerId: ID!
+}
+
+enum ResourceType {
+    PROBLEM
+    CONTEST
+    USER
+    ANNOUNCEMENT
+    TAG
+    TEAM
+}
+#union Resource = Problem | User | Team | Contest | Announcement | Tag
+
+
+# issues from gqlgen, cannot fix until update 😅
+# https://github.com/99designs/gqlgen/issues/1424
+interface ResourceAccess {
+    id: ID!
+#    resource: Resource!
+#    user: User!
+    access: Int!
+}
+input AccessInput {
+    userId: ID!
+    resourceId: ID!
+    resourceType: ResourceType!
+}
+enum AccessGroup {
+    EVERYONE
+    CUSTOM
+    TEAM_MEMBER
+    TEAM_ADMIN
+}
+
+#
+# |             | R | W | D | X |
+# |-------------|---|---|---|---|
+# | ALL         |   |   |   |   | (dont need to be added into access list)
+# | TEAM_MEMBER |   |   |   |   |
+# | TEAM_ADMIN  |   |   |   |   |
+# | OWNER       |   |   |   |   |
+# * `X` denotes `submitAccess` on `Problem`
+

@@ -5,24 +5,36 @@
       <span>Activity</span>
     </template>
     <template #content>
-      <div class="w-full sm:hidden lg:block">
-        <svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
-          <g>
-            <g v-for="i in 52" :key="`col-${i}`">
-              <rect
-                v-for="j in 7"
-                rx="2"
-                height="16"
-                width="16"
-                :y="j * 20"
-                :x="i * 20"
-                stroke="transparent"
-                :fill="`rgba(123,123,123,${Math.random()})`"
-                :key="`col-${i}-row-${j}`"
-              />
-            </g>
-          </g>
-        </svg>
+      <div class="grid">
+        <div class="col-9">
+          <div class="sm:hidden lg:flex">
+            <svg
+              :width="52 * (squareSize + 2)"
+              :height="7 * (squareSize + 2)"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <g v-for="i in 52" :key="`col-${i}`">
+                  <rect
+                    v-for="j in 7"
+                    rx="2"
+                    :height="squareSize"
+                    :width="squareSize"
+                    :y="(j - 1) * (squareSize + 2)"
+                    :x="(i - 1) * (squareSize + 2)"
+                    stroke="transparent"
+                    :fill="`rgba(123,123,123, ${Math.random()})`"
+                    :key="`col-${i}-row-${j}`"
+                  />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="col-1">
+          <Divider layout="vertical"></Divider>
+        </div>
+        <div class="col-2">Test</div>
       </div>
     </template>
   </Card>
@@ -86,4 +98,5 @@ const items = ref<MenuItem[]>([
 const toggle = (event: Event) => {
   toggleMenu.value?.toggle(event);
 };
+const squareSize = ref<number>(10);
 </script>
